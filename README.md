@@ -1,6 +1,6 @@
 # game-client
 
-GameClient - the Ruby gem for the Capture the Flag
+GameClient - Ruby client
 
 A friendly game of Capture the Flag
 
@@ -13,41 +13,10 @@ For more information, please visit [https://testdouble.com](https://testdouble.c
 
 ## Installation
 
-### Build a gem
+The Ruby gem is hosted in a git repository: https://github.com/danthompson/capture-the-flag-client-rb, then add the following in the Gemfile:
 
-To build the Ruby code into a gem:
+    gem 'game-client', git: 'https://github.com/danthompson/capture-the-flag-client-rb.git'
 
-```shell
-gem build game-client.gemspec
-```
-
-Then either install the gem locally:
-
-```shell
-gem install ./game-client-1.0.0.gem
-```
-
-(for development, run `gem install --dev ./game-client-1.0.0.gem` to install the development dependencies)
-
-or publish the gem to a gem hosting service, e.g. [RubyGems](https://rubygems.org/).
-
-Finally add this to the Gemfile:
-
-    gem 'game-client', '~> 1.0.0'
-
-### Install from Git
-
-If the Ruby gem is hosted at a git repository: https://github.com/GIT_USER_ID/GIT_REPO_ID, then add the following in the Gemfile:
-
-    gem 'game-client', :git => 'https://github.com/GIT_USER_ID/GIT_REPO_ID.git'
-
-### Include the Ruby code directly
-
-Include the Ruby code directly using `-I` as follows:
-
-```shell
-ruby -Ilib script.rb
-```
 
 ## Getting Started
 
@@ -60,7 +29,8 @@ require 'game-client'
 # Setup authorization
 GameClient.configure do |config|
   # Configure Bearer authorization: token
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  config.host = 'THE_GAME_HOST' # https://example.com
+  config.access_token = 'YOUR_BEARER_TOKEN' # alice@example.com
 end
 
 api_instance = GameClient::GameApi.new
@@ -68,7 +38,7 @@ api_instance = GameClient::GameApi.new
 begin
   #Get Player
   result = api_instance.get_player
-  p result
+  pp result
 rescue GameClient::ApiError => e
   puts "Exception when calling GameApi->get_player: #{e}"
 end
@@ -77,7 +47,7 @@ end
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost:3000/api*
+All URIs are relative to *https://GAME-API-ENDPOINT/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -96,6 +66,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Authorization
 
+Your bearer token is your email address.
 
 ### token
 
