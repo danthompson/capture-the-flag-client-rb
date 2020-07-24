@@ -15,6 +15,8 @@ require 'date'
 module GameClient
   # Player information
   class Player
+    attr_accessor :name
+
     attr_accessor :has_peg
 
     attr_accessor :has_flag
@@ -28,6 +30,7 @@ module GameClient
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'name' => :'name',
         :'has_peg' => :'has_peg',
         :'has_flag' => :'has_flag',
         :'is_in_safe_zone' => :'is_in_safe_zone',
@@ -39,6 +42,7 @@ module GameClient
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'name' => :'String',
         :'has_peg' => :'Boolean',
         :'has_flag' => :'Boolean',
         :'is_in_safe_zone' => :'Boolean',
@@ -68,6 +72,10 @@ module GameClient
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
+      end
+
       if attributes.key?(:'has_peg')
         self.has_peg = attributes[:'has_peg']
       end
@@ -93,6 +101,10 @@ module GameClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @name.nil?
+        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      end
+
       if @has_peg.nil?
         invalid_properties.push('invalid value for "has_peg", has_peg cannot be nil.')
       end
@@ -119,6 +131,7 @@ module GameClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @name.nil?
       return false if @has_peg.nil?
       return false if @has_flag.nil?
       return false if @is_in_safe_zone.nil?
@@ -132,6 +145,7 @@ module GameClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          name == o.name &&
           has_peg == o.has_peg &&
           has_flag == o.has_flag &&
           is_in_safe_zone == o.is_in_safe_zone &&
@@ -148,7 +162,7 @@ module GameClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [has_peg, has_flag, is_in_safe_zone, x, y].hash
+      [name, has_peg, has_flag, is_in_safe_zone, x, y].hash
     end
 
     # Builds the object from hash

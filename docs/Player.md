@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**name** | **String** |  | 
 **has_peg** | **Boolean** |  | 
 **has_flag** | **Boolean** |  | 
 **is_in_safe_zone** | **Boolean** |  | 
@@ -15,7 +16,8 @@ Name | Type | Description | Notes
 ```ruby
 require 'GameClient'
 
-instance = GameClient::Player.new(has_peg: null,
+instance = GameClient::Player.new(name: null,
+                                 has_peg: null,
                                  has_flag: null,
                                  is_in_safe_zone: null,
                                  x: null,
